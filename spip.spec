@@ -2,14 +2,14 @@
 %define	Name	SPIP
 %define	version	1.9.2
 %define	Version	1-9-2
-%define	release	%mkrel 1
+%define	release	%mkrel 2
 %define _requires_exceptions pear(SourceMap.class.php)
 
 
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Summary:	Système de publication pour l'internet
+Summary:	CMS tool for Internet
 License:	GPL
 Group:		System/Servers
 Source0:	%{name}.tar.bz2
@@ -25,7 +25,7 @@ BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
-SPIP is a publishing system developed by the minirézo to manage the site
+SPIP is a publishing system developed by the minirezo to manage the site
 uZine. We provide it to anyone as a free software under GPL licence.
 Therefore, you can use it freely for your own site, be it personnal,
 co-operative, institutional or commercial.
