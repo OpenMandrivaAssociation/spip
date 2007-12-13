@@ -1,8 +1,8 @@
 %define	name	spip
 %define	Name	SPIP
-%define	version	1.9.2
-%define	Version	1-9-2
-%define	release	%mkrel 2
+%define	version	1.9.2c
+%define	Version	1-9-2c
+%define	release	%mkrel 1
 %define _requires_exceptions pear(SourceMap.class.php)
 
 
@@ -15,7 +15,6 @@ Group:		System/Servers
 Source0:	%{name}.tar.bz2
 Source1:	%{name}.logrotate.bz2
 Source2:	%{name}-apache.conf.bz2
-#Patch:		%{name}-1.7-logging.patch.bz2
 URL:		http://www.spip.net/
 BuildRequires:  apache-base >= 2.0.54-5mdk
 Requires(pre):  mod_php >= 2.0.54-5mdk
@@ -34,7 +33,6 @@ To finish the installation, just go to http://localhost/spip/ecrire/
 
 %prep
 %setup -q -n %{name}
-#%patch
 find . -name remove.txt -exec rm -f {} \;
 find . -type f -exec chmod 644 {} \;
 find . -name '*svn*' -exec rm -f {} \;
