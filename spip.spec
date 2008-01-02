@@ -21,6 +21,7 @@ Requires(pre):  mod_php >= 2.0.54-5mdk
 Requires(pre):  apache >= 2.0.54-5mdk
 Requires(pre):	rpm-helper
 BuildArch:	noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 SPIP is a publishing system developed by the minirezo to manage the site
