@@ -1,8 +1,8 @@
 %define	name	spip
 %define	Name	SPIP
-%define	version	1.9.2c
-%define	Version	1-9-2c
-%define	release	%mkrel 4
+%define	version	2.0
+%define	Version	2.0
+%define	release	%mkrel 1
 %define _requires_exceptions pear(SourceMap.class.php)
 
 
@@ -12,7 +12,7 @@ Release:	%{release}
 Summary:	CMS tool for Internet
 License:	GPL
 Group:		System/Servers
-Source0:	%{name}.tar.bz2
+Source0:	%{name}-v%{version}.zip
 Source1:	%{name}.logrotate.bz2
 Source2:	%{name}-apache.conf.bz2
 URL:		http://www.spip.net/
@@ -67,17 +67,17 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %dir %{_var}/www/%{name}
-%{_var}/www/%{name}/*.php3
-%{_var}/www/%{name}/*.htc
+%{_var}/www/%{name}/*.php
+#%{_var}/www/%{name}/*.htc
 %{_var}/www/%{name}/*.txt
 %{_var}/www/%{name}/*.gif
 %{_var}/www/%{name}/*.php
 %{_var}/www/%{name}/config
-%{_var}/www/%{name}/dist
+%{_var}/www/%{name}/squelettes-dist
 %{_var}/www/%{name}/ecrire/*
 %{_var}/www/%{name}/local
 %{_var}/www/%{name}/tmp
-%{_var}/www/%{name}/oo
+%{_var}/www/%{name}/prive
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 %dir %attr(775,root,apache) %{_var}/www/%{name}/IMG
 %dir %attr(775,root,apache) %{_var}/www/%{name}/ecrire
