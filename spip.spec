@@ -1,7 +1,7 @@
 %define	name	spip
 %define	Name	SPIP
 %define	version	2.0.10
-%define	release	%mkrel 1
+%define	release	%mkrel 2
 %define _requires_exceptions pear(SourceMap.class.php)
 
 
@@ -11,16 +11,12 @@ Release:	%{release}
 Summary:	CMS tool for Internet
 License:	GPL
 Group:		System/Servers
+URL:		http://www.spip.net/
 Source0:	%{name}-v%{version}.zip
 Source1:	%{name}.logrotate.bz2
 Source2:	%{name}-apache.conf.bz2
-URL:		http://www.spip.net/
-BuildRequires:  apache-base >= 2.0.54-5mdk
-Requires(pre):  mod_php >= 2.0.54-5mdk
-Requires(pre):  apache >= 2.0.54-5mdk
-Requires(pre):	rpm-helper
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 SPIP is a publishing system developed by the minirezo to manage the site
@@ -39,29 +35,33 @@ find . -name '*svn*' -exec rm -f {} \;
 %build
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 # install files
-install -d -m 755 $RPM_BUILD_ROOT%{_var}/www/%{name}
-cp -pR * $RPM_BUILD_ROOT%{_var}/www/%{name}
+install -d -m 755 %{buildroot}%{_var}/www/%{name}
+cp -pR * %{buildroot}%{_var}/www/%{name}
 
 # logrotate
-install -d -m 755 $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d
-bzcat %{SOURCE1} > $RPM_BUILD_ROOT%{_sysconfdir}/logrotate.d/%{name}
+install -d -m 755 %{buildroot}%{_sysconfdir}/logrotate.d
+bzcat %{SOURCE1} > %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 
 # apache configuration
-install -d -m 755 $RPM_BUILD_ROOT%{_sysconfdir}/httpd/conf/webapps.d
-bzcat %{SOURCE2} > $RPM_BUILD_ROOT%{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
+install -d -m 755 %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
+bzcat %{SOURCE2} > %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %post
 %create_ghostfile /var/log/httpd/spip.log apache apache 640
+%if %mdkversion < 201010
 %_post_webapp
+%endif
 
 %postun
+%if %mdkversion < 201010
 %_postun_webapp
+%endif
 
 %files
 %defattr(-,root,root)
