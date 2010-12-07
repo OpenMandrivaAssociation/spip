@@ -1,7 +1,7 @@
 %define	name	spip
 %define	Name	SPIP
 %define	version	2.0.10
-%define	release	%mkrel 2
+%define	release	%mkrel 3
 %define _requires_exceptions pear(SourceMap.class.php)
 
 
