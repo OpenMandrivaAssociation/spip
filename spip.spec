@@ -1,22 +1,18 @@
-%define	name	spip
 %define	Name	SPIP
-%define	version	2.0.10
-%define	release	%mkrel 3
 %define _requires_exceptions pear(SourceMap.class.php)
 
 
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		spip
+Version:	2.1.1
+Release:	%mkrel 1
 Summary:	CMS tool for Internet
-License:	GPL
+License:	GPLv2+
 Group:		System/Servers
 URL:		http://www.spip.net/
 Source0:	%{name}-v%{version}.zip
 Source1:	%{name}.logrotate.bz2
 Source2:	%{name}-apache.conf.bz2
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 SPIP is a publishing system developed by the minirezo to manage the site
@@ -27,16 +23,15 @@ co-operative, institutional or commercial.
 To finish the installation, just go to http://localhost/spip/ecrire/
 
 %prep
-%setup -q -n %{name}
+%setup -q 
 find . -name remove.txt -exec rm -f {} \;
 find . -type f -exec chmod 644 {} \;
 find . -name '*svn*' -exec rm -f {} \;
 
 %build
+:
 
 %install
-rm -rf %{buildroot}
-
 # install files
 install -d -m 755 %{buildroot}%{_var}/www/%{name}
 cp -pR * %{buildroot}%{_var}/www/%{name}
@@ -77,6 +72,8 @@ rm -rf %{buildroot}
 %{_var}/www/%{name}/local
 %{_var}/www/%{name}/tmp
 %{_var}/www/%{name}/prive
+%{_var}/www/%{name}/mutualisation/*
+%{_var}/www/%{name}/extensions/*
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 %dir %attr(775,root,apache) %{_var}/www/%{name}/IMG
 %dir %attr(775,root,apache) %{_var}/www/%{name}/ecrire
