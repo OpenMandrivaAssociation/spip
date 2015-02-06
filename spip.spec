@@ -9,7 +9,7 @@
 
 Name:		spip
 Version:	2.1.1
-Release:	3
+Release:	4
 Summary:	CMS tool for Internet
 License:	GPLv2+
 Group:		System/Servers
