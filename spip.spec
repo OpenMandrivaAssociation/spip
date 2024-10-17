@@ -13,7 +13,7 @@ Release:	4
 Summary:	CMS tool for Internet
 License:	GPLv2+
 Group:		System/Servers
-URL:		http://www.spip.net/
+URL:		https://www.spip.net/
 Source0:	%{name}-v%{version}.zip
 Source1:	%{name}.logrotate.bz2
 Source2:	%{name}-apache.conf.bz2
